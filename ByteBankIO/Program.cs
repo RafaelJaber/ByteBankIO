@@ -18,7 +18,9 @@ class Program
             while (numeroDeBytesLidos != 0)
             {
                 numeroDeBytesLidos = fluxoDoARquivo.Read(buffer, 0, 1024);
-                EscreverBuffer(buffer);
+
+                //Console.WriteLine($"Bytes lidos: {numeroDeBytesLidos}");
+                EscreverBuffer(buffer, numeroDeBytesLidos);
 
             }
         
@@ -33,11 +35,14 @@ class Program
         Console.ReadLine();
     }
 
-    static void EscreverBuffer(byte[] buffer)
+    static void EscreverBuffer(byte[] buffer, int bytesLidos)
     {
         UTF8Encoding utf8 = new UTF8Encoding();
-        string texto = utf8.GetString(buffer);
+        string texto = utf8.GetString(buffer, 0, bytesLidos);
+        
+        // public virtual string GetString(byte[] butes, int index, int count);
         Console.Write(texto);
+        
         /*
         foreach (byte b in buffer)
         {
