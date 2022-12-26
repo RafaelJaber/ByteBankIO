@@ -1,4 +1,5 @@
 ﻿using ByteBankIO;
+using System.Text;
 
 class Program
 {
@@ -30,10 +31,14 @@ class Program
 
     static void EscreverBuffer(byte[] buffer)
     {
+        UTF8Encoding utf8 = new UTF8Encoding();
+        string texto = utf8.GetString(buffer);
+        Console.Write(texto);
+        /*
         foreach (byte b in buffer)
         {
             Console.Write(b);
             Console.Write(" ");
-        }
+        }*/
     }
 }
