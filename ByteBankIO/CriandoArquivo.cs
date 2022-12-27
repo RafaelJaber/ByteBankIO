@@ -50,4 +50,35 @@ partial class Program
             }
         }
     }
+
+    static void EscritaBinaria()
+    {
+        var caminhoNovoArquivo = $"C:\\Developer\\courses\\Alura\\ByteBankIO-master\\retorno\\TestaEscrita.txt";
+        
+        using (FileStream fs = new FileStream(caminhoNovoArquivo, FileMode.Create))
+        using (BinaryWriter escritor = new BinaryWriter(fs))
+        {
+            escritor.Write(456);
+            escritor.Write(5656564);
+            escritor.Write(4000.56);
+            escritor.Write("Rafael Jaber");
+        }
+        Console.WriteLine("Aplicação Finalizada...");
+    }
+
+    static void LeituraBinaria()
+    {
+        var caminhoNovoArquivo = $"C:\\Developer\\courses\\Alura\\ByteBankIO-master\\retorno\\TestaEscrita.txt";
+        
+        using (FileStream fs = new FileStream(caminhoNovoArquivo, FileMode.Open))
+        using (BinaryReader leitor = new BinaryReader(fs))
+        {
+            var agencia = leitor.ReadInt32();
+            var numeroConta = leitor.ReadInt32();
+            var saldo = leitor.ReadDouble();
+            var titular = leitor.ReadString();
+
+            Console.WriteLine($"{titular} : ag: {agencia}, conta: {numeroConta}, saldo: {saldo}");
+        }
+    }
 }

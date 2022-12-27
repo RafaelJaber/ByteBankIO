@@ -36,8 +36,10 @@ partial class Program
             Console.WriteLine("===============================================================");
             Console.WriteLine();
         }
-        CriarArquivo();
-        CriarArquivoComWriter();
+        //CriarArquivo();
+        //CriarArquivoComWriter();
+        EscritaBinaria();
+        LeituraBinaria();
         Console.ReadLine();
 
         static ContaCorrente ConverterStringParaContaCorrente(string linha)
