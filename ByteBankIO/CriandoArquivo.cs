@@ -19,4 +19,17 @@ partial class Program
             fluxoDeArquivo.Close();
         }
     }
+
+    static void CriarArquivoComWriter(string conta = "456,7895,4785.40,Sabrina Santos")
+    {
+        var caminhoNovoArquivo = $"C:\\Developer\\courses\\Alura\\ByteBankIO-master\\retorno\\conta_writer{DateTime.Now.Ticks}.csv";
+        
+        using (FileStream fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+        using (StreamWriter escritor = new StreamWriter(fluxoDeArquivo))
+        {
+            escritor.Write(conta);
+        }
+
+        
+    }
 }
