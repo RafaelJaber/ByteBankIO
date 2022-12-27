@@ -30,6 +30,24 @@ partial class Program
             escritor.Write(conta);
         }
 
+        TestaEscrita();
+    }
+
+    static void TestaEscrita()
+    {
+        var caminhoNovoArquivo = $"C:\\Developer\\courses\\Alura\\ByteBankIO-master\\retorno\\teste.txt";
         
+        using (FileStream fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+        using (StreamWriter escritor = new StreamWriter(fluxoDeArquivo))
+        {
+            escritor.WriteLine("Linha 0");
+            for (int i = 0; i < 1000; i++)
+            {
+                escritor.WriteLine($"Linha {i}");
+                escritor.Flush(); // Despeja o buffer para o Stream
+                Console.WriteLine($"Linha {i} foi escrita no arquivo.");
+                Thread.Sleep(100);
+            }
+        }
     }
 }
