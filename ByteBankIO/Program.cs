@@ -1,4 +1,7 @@
-﻿partial class Program
+﻿using ByteBankIO;
+using System.Globalization;
+
+partial class Program
 {
     static void Main(string[] args)
     {
@@ -23,7 +26,11 @@
             Console.WriteLine("Realizando a leitura do arquivo utilizando o EndOfStream");
             while (!leitor.EndOfStream)
             {
-                Console.WriteLine(leitor.ReadLine());
+                string linha = leitor.ReadLine();
+                ContaCorrente contaCorrente = ConverterStringParaContaCorrente(linha);
+
+                string msg = $"Conta número: {contaCorrente.Numero}, Ag: {contaCorrente.Agencia}, Saldo: {contaCorrente.Saldo}";
+                Console.WriteLine(msg);
             }
             Console.WriteLine("Finalizando a leitura do arquivo utilizando o EndOfStream");
             Console.WriteLine("===============================================================");
@@ -31,7 +38,30 @@
         }
         
         Console.ReadLine();
+
+        static ContaCorrente ConverterStringParaContaCorrente(string linha)
+        {
+            string[] campos = linha.Split(',');
+
+            int agencia = int.Parse(campos[0]);
+            int numero = int.Parse(campos[1]);
+            double saldoComoDouble = double.Parse(campos[2], CultureInfo.InvariantCulture);
+            string nomeTitular = campos[3];
+
+            Cliente titular = new Cliente
+            {
+                Nome = nomeTitular
+            };
+
+            ContaCorrente resultado = new ContaCorrente(agencia, numero);
+            resultado.Depositar(saldoComoDouble);
+            resultado.Titular = titular;
+
+            return resultado;
+        }
     }
+    
+    
 
   
 }
