@@ -36,7 +36,7 @@ partial class Program
             Console.WriteLine("===============================================================");
             Console.WriteLine();
         }
-        
+        CriarArquivo();
         Console.ReadLine();
 
         static ContaCorrente ConverterStringParaContaCorrente(string linha)
