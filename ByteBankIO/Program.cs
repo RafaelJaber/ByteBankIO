@@ -29,7 +29,7 @@ partial class Program
                 string linha = leitor.ReadLine();
                 ContaCorrente contaCorrente = ConverterStringParaContaCorrente(linha);
 
-                string msg = $"Conta número: {contaCorrente.Numero}, Ag: {contaCorrente.Agencia}, Saldo: {contaCorrente.Saldo}";
+                string msg = $"{contaCorrente.Titular.Nome} : Conta número: {contaCorrente.Numero}, Ag: {contaCorrente.Agencia}, Saldo: {contaCorrente.Saldo}";
                 Console.WriteLine(msg);
             }
             Console.WriteLine("Finalizando a leitura do arquivo utilizando o EndOfStream");
